@@ -3,9 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32407.337
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{12DB1B84-C12D-455F-8BFB-7AC9535AFABB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{1C4DE86E-977E-4FFC-8C67-A36F712B5B98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.API", "Services\Infra\Infra.API\Infra.API.csproj", "{250A8351-0119-483B-B400-38C69271C3DB}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{250A8351-0119-483B-B400-38C69271C3DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{250A8351-0119-483B-B400-38C69271C3DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{250A8351-0119-483B-B400-38C69271C3DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{250A8351-0119-483B-B400-38C69271C3DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1C4DE86E-977E-4FFC-8C67-A36F712B5B98} = {12DB1B84-C12D-455F-8BFB-7AC9535AFABB}
+		{250A8351-0119-483B-B400-38C69271C3DB} = {1C4DE86E-977E-4FFC-8C67-A36F712B5B98}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B4E94C2F-D351-4BFC-A4CC-37A16319B7EF}
