@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  infradb:
+    image: postgres
+    
+  pgadmin:
+    image: dpage/pgadmin4  
+  
+  infra.api:
+    image: ${DOCKER_REGISTRY-}infraapi
+    build:
+      context: .
+      dockerfile: Services/Infra/Infra.API/Dockerfile
+
+volumes:
+  postgres_data:
+  pgadmin_data:

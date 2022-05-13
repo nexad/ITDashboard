@@ -27,6 +27,9 @@ namespace Infra.API.Data
         public DbSet<GlobalEnvironment> GlobalEnvironments { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseSqlite($"Data Source={DbPath}");
+        {
+            base.OnConfiguring(options);
+            options.UseSqlite($"Data Source = {DbPath}");
+        }
     }
 }

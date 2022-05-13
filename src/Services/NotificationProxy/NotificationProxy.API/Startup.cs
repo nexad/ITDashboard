@@ -1,5 +1,3 @@
-using Infra.API.Data;
-using Infra.API.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Infra.API
+namespace NotificationProxy.API
 {
     public class Startup
     {
@@ -27,16 +25,13 @@ namespace Infra.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IGlobalEnviromentRepository, GlobalEnviromentRepository>();
-            services.AddScoped<IServerRepository, ServerRepository>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Infra.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "NotificationProxy.API", Version = "v1" });
             });
-            //services.AddScoped<IInfraDBContext, InfraDBContext>();
-            
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,7 +41,8 @@ namespace Infra.API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Infra.API v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "NotificationProxy.API v1"));
+
             }
 
             app.UseRouting();
