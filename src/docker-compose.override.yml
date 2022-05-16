@@ -34,3 +34,11 @@ services:
       - infradb
     ports:
       - "8002:80"
+
+  dwhproxy.api:
+    container_name: dwhproxy.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8000:80"
+
