@@ -12,13 +12,26 @@ namespace Infra.API.Data
     {
         public string DbPath { get; }
 
-        public InfraDBContext(IConfiguration configuration )
+
+        public InfraDBContext(DbContextOptions<InfraDBContext> options) : base(options)
         {
-            
-            DbPath = configuration.GetConnectionString("InfraDBName");
-            Console.WriteLine($"Batabase Name is {DbPath}");
             InfraDBContextSeed.SeedData(this);
         }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.UseSerialColumns();
+            
+        }
+
+        //public InfraDBContext(IConfiguration configuration )
+        //{
+            
+        //    DbPath = configuration.GetConnectionString("InfraDBName");
+        //    Console.WriteLine($"Batabase Name is {DbPath}");
+        //    //InfraDBContextSeed.SeedData(this);
+        //}
 
         public DbSet<Server> Servers { get; set; }
         public DbSet<Service> Services { get; set; }
@@ -29,7 +42,8 @@ namespace Infra.API.Data
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             base.OnConfiguring(options);
-            options.UseSqlite($"Data Source = {DbPath}");
+            
+            //options.UseSqlite($"Data Source = {DbPath}");
         }
     }
 }

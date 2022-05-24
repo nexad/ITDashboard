@@ -6,7 +6,7 @@ services:
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin1234
-      - POSTGRES_DB=InfraDb
+      - POSTGRES_DB=codeFirstDb
     restart: always
     ports:
         - "5432:5432"
@@ -29,7 +29,7 @@ services:
     container_name: infra.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings:ConnectionString=Server=infradb;Port=5432;Database=InfraDb;User Id=admin;Password=admin1234;"
+      - "DatabaseSettings:ConnectionString=Server=infradb;Port=5432;Database=codeFirstDb;User Id=admin;Password=admin1234;"
     depends_on:
       - infradb
     ports:

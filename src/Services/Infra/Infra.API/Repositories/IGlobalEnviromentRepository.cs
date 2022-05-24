@@ -1,6 +1,4 @@
 ﻿using Infra.API.Entities;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Infra.API.Repositories
 {
@@ -11,9 +9,5 @@ namespace Infra.API.Repositories
         Task<bool> CreateGlobalEnviroment(GlobalEnvironment globalEnvironment);
         Task<bool> DeleteGlobalEnviroment(int id);
         Task<bool> UpdateGlobalEnviroment(GlobalEnvironment globalEnvironment);
-
-        
-
-
     }
 }

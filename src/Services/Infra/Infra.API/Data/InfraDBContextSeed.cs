@@ -20,13 +20,16 @@ namespace Infra.API.Data
 
                 infraDBContext.SaveChanges();
 
+
                 var environment = infraDBContext.GlobalEnvironments.FirstOrDefault(p => p.Name.Equals("UAT"));
 
                 if (environment != null)
                 {
-                    
+
                     Console.WriteLine("UAT Environment found");
-                    environment.Servers.AddRange(GetPreconfiguredUATServers(environment));
+                    List<Server> UATServers = GetPreconfiguredUATServers(environment).ToList();
+                    environment.Servers = UATServers;
+                    //environment.Servers.AddRange(GetPreconfiguredUATServers(environment));
 
 
 
@@ -34,8 +37,16 @@ namespace Infra.API.Data
 
                     infraDBContext.SaveChanges();
                 }
-                
-            }    
+
+
+
+            }
+            else
+            {
+
+            }
+
+
         }
         public static IEnumerable<GlobalEnvironment> GetPreconfiguredGlobalEnvironments()
         {
@@ -56,7 +67,6 @@ namespace Infra.API.Data
                 },
             };
         }
-
         public static IEnumerable<Solution> GetPreconfiguredSolutionss()
         {
             return new List<Solution>()
@@ -76,20 +86,23 @@ namespace Infra.API.Data
                 {
                     Name = "IPSAPPSRVUAT",
                     Description = "IPS UAT Server, Control panel and first backgroun service",
+                    FQDN = "UATFQDN",
                     GlobalEnvironment = globalEnvironment
                 },
                 new Server
                 {
                     Name = "IPSAPPSRVUAT1",
                     Description = "IPS UAT Server, Second background service and API Service",
+                    FQDN = "UAT1FQDN",
                     GlobalEnvironment = globalEnvironment
                 },
                 new Server
                 {
                     Name = "IPSAPPSRVUAT2",
                     Description = "IPS UAT Server, API Service",
+                    FQDN = "UAT2FQDN",
                     GlobalEnvironment = globalEnvironment
-                },
+                }
             };
         }
     }
