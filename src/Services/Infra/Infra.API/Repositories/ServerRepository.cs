@@ -6,9 +6,9 @@ namespace Infra.API.Repositories
 {
     public class ServerRepository : IServerRepository
     {
-        private readonly IInfraDBContext _context;
+        private readonly InfraDBContext _context;
 
-        public ServerRepository(IInfraDBContext context)
+        public ServerRepository(InfraDBContext context)
         {
             _context = context;
         }
@@ -18,5 +18,15 @@ namespace Infra.API.Repositories
 
             return await _context.Servers.Include(s => s.GlobalEnvironment).ToListAsync();
         }
+
+        public async Task AddServer(Server server, int globalEnvId)
+        {
+            var ge = _context.GlobalEnvironments.FirstOrDefault(e => e.Id == globalEnvId);
+            server.GlobalEnvironment = ge;
+            await _context.Servers.AddAsync(server);
+            _context.SaveChanges();
+
+        }
+
     }
 }

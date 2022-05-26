@@ -25,6 +25,30 @@ namespace Infra.API.Controllers
             return Ok(servers);
         }
 
+        [HttpPost]
+        public async Task<ActionResult<Server>> AddServer(string Name, string FQDN, string Description, int GlobalEnvId)
+        {
+            try
+            {
+                Server server = new Server()
+                {
+                    Name = Name,
+                    FQDN = FQDN,
+                    Description = Description,
+                };
+
+                await _repository.AddServer(server, GlobalEnvId);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+
+                return Problem("Doslo je do greske prilikom dodavanja novog servera." + Environment.NewLine + ex.Message.ToString());
+            }
+
+
+        }
+
 
     }
 }
